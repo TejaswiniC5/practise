@@ -1,0 +1,186 @@
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int main()
+{
+int len,i=0,j=0,k=0,m=0,n=0,o=0,o1=0,var=0,l=0,f=0,c=0,f1=0;
+char str[30],str1[40]=&quot;E&quot;,temp[20],temp1[20],temp2[20],tt[20],t3[20];
+char t[20];
+char array[6][5][10]= {
+&quot;NT&quot;, &quot;&lt;id&gt;&quot;,&quot;+&quot;,&quot;*&quot;,&quot;;&quot;,
+&quot;E&quot;, &quot;Te&quot;,&quot;Error&quot;,&quot;Error&quot;,&quot;Error&quot;,
+&quot;e&quot;, &quot;Error&quot;,&quot;+Te&quot;,&quot;Error&quot;,&quot;\0&quot;,
+&quot;T&quot;, &quot;Vt&quot;,&quot;Error&quot;,&quot;Error&quot;,&quot;Error&quot;,
+&quot;t&quot;, &quot;Error&quot;,&quot;\0&quot;,&quot;*Vt&quot;,&quot;\0&quot;,
+&quot;V&quot;, &quot;&lt;id&gt;&quot;,&quot;Error&quot;,&quot;Error&quot;,&quot;Error&quot;
+};
+temp1[0]=&#39;\0&#39;;
+temp2[0]=&#39;\0&#39;;
+printf(&quot;\n\tLL(1) PARSER TABLE \n&quot;);
+for(i=0;i&lt;6;i++)
+{
+for(j=0;j&lt;5;j++)
+{
+printf(&quot;%10s&quot;,array[i][j]);
+}
+printf(&quot;\n&quot;);
+}
+printf(&quot;\n&quot;);
+printf(&quot;\n\tENTER THE STRING :&quot;);
+gets(str);
+if(str[strlen(str)-1] != &#39;;&#39;)
+{
+printf(&quot;END OF STRING MARKER SHOULD BE &#39;;&#39;&quot;);
+//getch();
+exit(1);
+}
+printf(&quot;\n\tCHECKING VALIDATION OF THE STRING &quot;);
+printf(&quot;%s\n\t&quot;,str1);
+i=0;
+while(i&lt;strlen(str))
+{
+again:
+if(str[i] == &#39; &#39; &amp;&amp; i&lt;strlen(str))
+{
+printf(&quot;\n\tSPACES IS NOT ALLOWED IN SOURSE STRING &quot;);
+//getch();
+
+Compiler Design Lab
+
+23
+
+exit(1);
+}
+temp[k]=str[i];
+temp[k+1]=&#39;\0&#39;;
+f1=0;
+again1:
+if(i&gt;=strlen(str))
+{
+//getch();
+exit(1);
+}
+for(l=1;l&lt;=4;l++)
+{
+if(strcmp(temp,array[0][l])==0)
+{
+f1=1;
+m=0,o=0,var=0,o1=0;
+temp1[0]=&#39;\0&#39;;
+temp2[0]=&#39;\0&#39;;
+len=strlen(str1);
+while(m&lt;strlen(str1) &amp;&amp; m&lt;strlen(str))
+{
+if(str1[m]==str[m])
+{
+var=m+1;
+temp2[o1]=str1[m];
+m++;
+o1++;
+}
+else
+{
+if((m+1)&lt;strlen(str1))
+{
+m++;
+temp1[o]=str1[m];
+o++;
+}
+else
+m++;
+}
+}
+temp2[o1] = &#39;\0&#39;;
+temp1[o] = &#39;\0&#39;;
+t[0] = str1[var];
+t[1] = &#39;\0&#39;;
+for(n=1;n&lt;=5;n++)
+{
+if(strcmp(array[n][0],t)==0)
+break;
+
+Compiler Design Lab
+
+24
+
+}
+strcpy(str1,temp2);
+strcat(str1,array[n][l]);
+strcat(str1,temp1);
+printf(&quot;%s\n\t&quot;,str1);
+//getch();
+t[0]=&#39;\0&#39;;
+if(strcmp(array[n][l],t)==0)
+{
+if(i==(strlen(str)-1))
+{
+int len=strlen(str1);
+str1[len-1]=&#39;\0&#39;;
+printf(&quot;%s\n\t&quot;,str1);
+printf(&quot;\n\n\tENTERED STRING IS VALID&quot;);
+//getch();
+exit(1);
+}
+temp1[0]=&#39;\0&#39;;
+temp2[0]=&#39;\0&#39;;
+t[0]=&#39;\0&#39;;
+goto again1;
+}
+if(strcmp(array[n][l],&quot;Error&quot;)==0)
+{
+printf(&quot;\n\tERROR IN YOUR SOURCE STRING&quot;);
+//getch();
+exit(1);
+}
+tt[0]=&#39;\0&#39;;
+strcpy(tt,array[n][l]);
+t3[0]=&#39;\0&#39;;
+f=0;
+
+for(c=0;c&lt;strlen(tt);c++)
+
+{
+t3[c]=tt[c];
+t3[c+1]=&#39;\0&#39;;
+if(strcmp(t3,temp)==0)
+{
+f=0;
+break;
+}
+else
+f=1;
+}
+if(f==0)
+{
+temp[0]=&#39;\0&#39;;
+
+Compiler Design Lab
+
+25
+
+temp1[0]=&#39;\0&#39;;
+temp2[0]=&#39;\0&#39;;
+t[0]=&#39;\0&#39;;
+i++;
+k=0;
+goto again;
+}
+else
+{
+temp1[0]=&#39;\0&#39;;
+temp2[0]=&#39;\0&#39;;
+t[0]=&#39;\0&#39;;
+goto again1;
+}
+}
+}
+i++;
+k++;
+}
+if(f1==0)
+printf(&quot;\nENTERED STRING IS INVALID&quot;);
+else
+printf(&quot;\n\n\tENTERED STRING IS VALID&quot;);
+return 0;
+}

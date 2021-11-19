@@ -1,0 +1,74 @@
+<html>
+<script>  
+function validate(){  
+var name=document.myform.name.value;  
+var password=document.myform.password.value;  
+var mail= document.myform.mailid.value; 
+var atposition=mail.indexOf("@");  
+var dotposition=mail.lastIndexOf("."); 
+var phone=document.myform.phone.value;
+var gender=document.myform.gender.value; 
+
+if (name==""){  
+  alert("Name can't be blank");
+ document.myform.name.focus(); 
+  return false;  
+}
+else if (password==""){  
+  alert("password can't be blank");  
+ document.myform.password.focus();
+  return false;  
+}
+else if (mail==""){
+  alert("email can't be blank");  
+ document.myform.mailid.focus();
+  return false;  
+}
+else if (phone==""){  
+  alert("phone can't be blank");  
+ document.myform.phone.focus();
+  return false;  
+}
+else if(atposition<1 || dotposition<atposition+2 || dotposition+2>=mail.length){
+alert("enter valid email id");  
+ document.myform.mailid.focus();
+  return false;  
+}
+else if(phone.length<10)
+{
+alert("Enter 10 digit mobile number");
+document.myform.phone.focus();
+  return false;  
+}
+else if (gender==""){  
+  alert("please select gender");  
+  return false;  
+}
+else if(password.length<8)
+{
+alert("Enter atleast 8 characters");
+document.myform.password.focus();
+ return false;
+}
+else 
+return true;
+}  
+</script>  
+<body>  
+<form name="myform" action="welcome.html" onsubmit="return validate()" >  
+Name: <input type="text" name="name"><br/>  
+Password: <input type="password" name="password" ><br/>  
+Email: <input type="text" name="mailid"><br/>  
+Phone number: <input type="text" name="phone"><br/> 
+Gender: <input type="radio" name="gender" > Male  <input type="radio" name="gender" > Female  </br>
+ 
+Languages : <input type="checkbox"  name="lang1" >
+English
+<input type="checkbox"  name="lang2" >
+Telugu
+<input type="checkbox"  name="lang3" >
+Hindi  <br>
+<input type="submit" value="register"> 
+</form> 
+</body>
+</html> 
